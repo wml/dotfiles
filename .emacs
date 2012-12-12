@@ -2,6 +2,11 @@
 (set-foreground-color "grey")
 (set-frame-font "-*-dejavu sans mono-*-*-*-*-12-*-*-*-*-*-*-*")
 
+;;; death to tabs
+(setq-default c-basic-indent 2)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+
 ;;; Fix junk characters in shell mode
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (setq column-number-mode 1)
