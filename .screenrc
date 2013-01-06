@@ -1,7 +1,7 @@
 escape ^``
 
 hardstatus alwayslastline
-hardstatus string "%{= kw} $USERNAME | %-=%-Lw%{= kG}( %n %t )%{= kw}%+Lw%-= | %{= kw}%M %d %c "
+hardstatus string "%{= kw} $USER | %-=%-Lw%{= kG}( %n %t )%{= kw}%+Lw%-= | %{= kw}%M %d %c "
 #hardstatus string "%{.bW}%-w%{.rW}%n %t%{-}%+w %=%{..G} %H %{..Y} %m/%d %C%a "
 
 startup_message off
