@@ -6,6 +6,7 @@ hardstatus string "%{= kw} $USER | %-=%-Lw%{= kG}( %n %t )%{= kw}%+Lw%-= | %{= k
 
 startup_message off
 vbell off
+defscrollback 4096
 
 screen -t jobs 0
 # screen -t mutt 1 mutt
