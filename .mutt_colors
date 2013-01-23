@@ -6,5 +6,5 @@ color markers       brightblue      white
 color attachment    white           default         
 color search        brightblue      default         
 color status        brightred       default
-color indicator     brightred       default
+color indicator     brightblue      default
 color tree          default         default        # arrow in threads
