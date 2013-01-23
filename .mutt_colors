@@ -1,0 +1,10 @@
+color normal        default         default         
+color error         red             default         
+color tilde         brightred       default         
+color message       brightred       default         
+color markers       brightblue      white           
+color attachment    white           default         
+color search        brightblue      default         
+color status        brightred       default
+color indicator     brightred       default
+color tree          default         default        # arrow in threads

@@ -1,0 +1,33 @@
+source ~/.mutt_auth
+source ~/.mutt_colors
+
+set editor = "emacs -nw"
+
+# configured for gmail
+alternative_order text/plain text/html *
+auto_view text/html
+hdr_order Date From To Cc
+ignore "Authentication-Results:"
+ignore "DKIM-Signature:"
+ignore "DomainKey-Signature:"
+set auto_tag = yes
+set certificate_file=~/.mutt/certificates
+set folder = "imaps://imap.gmail.com:993"
+set header_cache=~/.mutt/cache/headers
+set hostname = gmail.com
+set imap_check_subscribed
+set imap_keepalive = 300
+set include
+set mail_check = 60
+set message_cachedir=~/.mutt/cache/bodies
+set move = no
+set postponed = "+[GMail]/Drafts"
+set record = "+[GMail]/Sent Mail"
+set sort = 'threads'
+set sort_aux = 'reverse-last-date-received'
+set spoolfile = "+INBOX"
+set timeout = 300
+
+bind editor <Tab> complete-query
+bind editor ^T complete
+bind editor <space> noop 
