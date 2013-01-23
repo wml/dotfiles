@@ -8,6 +8,22 @@ startup_message off
 vbell off
 defscrollback 4096
 
+
+# cannot for the life of me get M-v to scroll upwards, but I have an
+#   approximating solution that scrolls up 40 characters, thanks to 
+#   this guy, who is a legend:
+#
+#        http://www.staldal.nu/tech/2009/01/11/
+#          how-to-use-mousewheel-in-gnu-screen/comment-page-1/
+#
+bindkey -m "^[v" stuff "40\025"
+
+# other emacs-like keybindings for copy mode
+markkeys "h=^B:l=^F:$=^E:^F=^V"
+bindkey -m "^[<" stuff "g"
+bindkey -m "^[>" stuff "G"
+
+
 screen mutt
 screen irssi
 screen w3m google.com
