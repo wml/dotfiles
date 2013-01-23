@@ -1,5 +1,6 @@
 alias ls='ls -lA --color=never'
 alias e='emacs -nw'
+alias cdd='cd ~/dotfiles'
 
 alias xfup='startxfce4'
 alias xfdown='xfce4-session-logout --logout'

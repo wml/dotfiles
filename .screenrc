@@ -8,16 +8,15 @@ startup_message off
 vbell off
 defscrollback 4096
 
-screen -t jobs 0
-# screen -t mutt 1 mutt
-# screen -t pianobar 2 pianobar
-#screen -t elinks 1 elinks
-screen -t python 1 python
-screen -t shell 2
-screen -t shell 3
-screen -t shell 4
+screen mutt
+screen irssi
+screen w3m google.com
+screen python
+screen bash
+screen bash
+screen bash
 
-select 2
+select 4
 
 # %{= ky}     set color to yellow on black.
 # %{= yk}     set color to black on yellow.
