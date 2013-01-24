@@ -21,8 +21,8 @@ set include
 set mail_check = 60
 set message_cachedir=~/.mutt/cache/bodies
 set move = no
-set postponed = "+[GMail]/Drafts"
-set record = "+[GMail]/Sent Mail"
+set postponed = "+Drafts"
+set record = "+Sent Mail"
 set sort = 'threads'
 set sort_aux = 'reverse-last-date-received'
 set spoolfile = "+INBOX"
