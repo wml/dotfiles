@@ -23,6 +23,8 @@ alias gm='git merge '
 alias gmm='git merge master'
 alias gb='git blame '
 
+alias git_clean='git reset --hard HEAD && git clean -d -f'
+
 function gbf() {
     find . -name $1 | head -n 1 | xargs git blame
 }
