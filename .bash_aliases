@@ -9,6 +9,7 @@ alias xfdown='xfce4-session-logout --logout'
 
 alias pygrep="find . -name '*.py' -type f -print0 | xargs -0 grep "
 alias shgrep="find . -name '*.sh' -type f -print0 | xargs -0 grep "
+alias fgrep="find . -type f | grep -v '\.git' | grep -v '\.tmbundle' | xargs file | grep ASCII | cut -d: -f1 | xargs grep "
 
 alias gs='git status '
 alias gd='git diff | less'
