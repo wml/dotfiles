@@ -1,5 +1,6 @@
 (set-background-color "black")
 (set-foreground-color "grey")
+(set-face-foreground 'minibuffer-prompt "light blue")
 (set-frame-font "-*-dejavu sans mono-*-*-*-*-12-*-*-*-*-*-*-*")
 
 (setq make-backup-files nil)
