@@ -54,3 +54,4 @@ With negative N, comment out original line and use the absolute value."
         (forward-char pos)))))
 
 (global-set-key [?\C-c ?\C-d] 'duplicate-line-or-region)
+(global-set-key "\C-x9" 'split-window-horizontally)
