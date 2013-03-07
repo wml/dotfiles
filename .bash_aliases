@@ -26,6 +26,7 @@ alias gaa='git add -A '
 alias gm='git merge '
 alias gmm='git merge master'
 alias gb='git blame '
+alias gr='git checkout -b '
 
 alias git_clean='git reset --hard HEAD && git clean -d -f'
 
