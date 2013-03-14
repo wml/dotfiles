@@ -4,6 +4,10 @@ alias e='emacs -nw'
 alias cdd='cd ~/dotfiles'
 alias tf='tail -f'
 
+function cdl() {
+    cd $* && ls
+}
+
 alias xfup='startxfce4'
 alias xfdown='xfce4-session-logout --logout'
 
@@ -23,8 +27,8 @@ alias gh='git push '
 alias gk='git checkout '
 alias ga='git add '
 alias gaa='git add -A '
-alias gm='git merge '
-alias gmm='git merge master'
+alias gm='git merge --no-commit '
+alias gmm='git merge --no-commit master'
 alias gb='git blame '
 alias gr='git checkout -b '
 
