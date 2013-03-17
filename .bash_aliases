@@ -42,7 +42,7 @@ function git_aliases() {
     alias gb='git blame '
     alias gr='git checkout -b '
 
-    alias git_clean='git reset --hard HEAD && git clean -d -f'
+    alias git-clean='git reset --hard HEAD && git clean -d -f'
 
     function gbf() {
         find . -name $1 | head -n 1 | xargs git blame
