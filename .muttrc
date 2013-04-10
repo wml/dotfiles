@@ -2,10 +2,11 @@ source ~/.mutt_auth
 source ~/.mutt_colors
 
 set editor = "emacs -nw"
+set mailcap_path = ~/.mailcap
+auto_view text/html
 
 # configured for gmail
 alternative_order text/plain text/html *
-auto_view text/html
 hdr_order Date From To Cc
 ignore "Authentication-Results:"
 ignore "DKIM-Signature:"
