@@ -22,9 +22,9 @@ function dev_aliases() {
     alias shgrep="find . -name '*.sh' -type f -print0 | xargs -0 grep "
     alias shgrepi="find . -name '*.sh' -type f -print0 | xargs -0 grep -i "
     alias fgrep="find . -type f | grep -v '\.git' | grep -v '\.tmbundle' \
-        | xargs file | grep ASCII | cut -d: -f1 | xargs grep "
+        | xargs file | grep -v ELF | cut -d: -f1 | xargs grep "
     alias fgrepi="find . -type f | grep -v '\.git' | grep -v '\.tmbundle' \
-        | xargs file | grep ASCII | cut -d: -f1 | xargs grep -i "
+        | xargs file | grep -v ELF | cut -d: -f1 | xargs grep -i "
 }
 
 function git_aliases() {
