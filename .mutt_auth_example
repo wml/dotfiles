@@ -1,1 +1,4 @@
 set imap_user = "user@gmail.com"
+set realname = "First Last"
+set from = "user@gmail.com"
+set use_from = yes
