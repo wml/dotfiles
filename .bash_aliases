@@ -41,6 +41,7 @@ function git_aliases() {
     alias gmm='gm master'
     alias gb='git blame '
     alias gr='git checkout -b '
+    alias gw='git show '
 
     alias git-clean='git reset --hard HEAD && git clean -d -f'
 
