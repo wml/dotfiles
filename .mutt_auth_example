@@ -2,3 +2,4 @@ set imap_user = "user@gmail.com"
 set realname = "First Last"
 set from = "user@gmail.com"
 set use_from = yes
+set smtp_url="smtps://username[@appsdomain]@smtp.gmail.com"
