@@ -32,3 +32,5 @@ set timeout = 300
 bind editor <Tab> complete-query
 bind editor ^T complete
 bind editor <space> noop 
+
+bind index G imap-fetch-mail
