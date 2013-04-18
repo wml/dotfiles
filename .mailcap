@@ -1,3 +1,3 @@
-text/html; chromium %s; copiousoutput; needsterminal
+text/html; chromium %s & sleep 3; copiousoutput; needsterminal
 application/pdf; xpdf %s; copiousoutput; needsterminal
-image/*; chromium %s; copiousoutput; needsterminal
+image/*; chromium %s & sleep 3; copiousoutput; needsterminal
