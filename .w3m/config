@@ -17,10 +17,10 @@ use_combining 1
 use_wide 1
 ext_halfdump 0
 follow_locale 1
-system_charset US-ASCII
+system_charset UTF-8
 auto_detect 2
 document_charset US-ASCII
-display_charset US-ASCII
+display_charset UTF-8
 cookie_avoid_wrong_number_of_dots 
 cookie_accept_domains 
 cookie_reject_domains 
@@ -67,7 +67,7 @@ extbrowser2
 extbrowser /usr/bin/mozilla
 mailer /usr/bin/mail
 mailto_options 1
-editor /usr/bin/vi
+editor /usr/local/bin/emacs
 urimethodmap ~/.w3m/urimethodmap, /usr/etc/w3m/urimethodmap
 mailcap ~/.w3m/mailcap, /usr/etc/w3m/mailcap
 mime_types ~/.mime.types, /usr/etc/mime.types
@@ -80,6 +80,11 @@ preserve_timestamp 1
 auto_uncompress 0
 decode_cte 0
 clear_buffer 1
+fixed_wheel_scroll_count 5
+relative_wheel_scroll_ratio 30
+relative_wheel_scroll 0
+reverse_mouse 0
+use_mouse 1
 ignorecase_search 1
 wrap_search 0
 mark_all_pages 0
@@ -108,14 +113,8 @@ label_topline 0
 show_srch_str 1
 show_lnum 0
 fold_line 0
-image_map_list 1
-imgdisplay w3mimgdisplay
-image_scale 100
-ext_image_viewer 1
-max_load_image 4
-auto_image 1
 pseudo_inlines 1
-display_image 1
+display_image 0
 view_unseenobject 0
 ignore_null_img_alt 1
 display_ins_del 1
@@ -135,7 +134,6 @@ open_tab_dl_list 0
 open_tab_blank 0
 target_self 0
 frame 0
-pixel_per_line 14
 pixel_per_char 7
 indent_incr 4
 tabstop 8

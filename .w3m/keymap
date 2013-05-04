@@ -1,0 +1,4 @@
+keymap  F       NEXT
+keymap  B       PREV
+keymap  ESC-f   NEXT_WORD
+keymap  ESC-b   PREV_WORD
