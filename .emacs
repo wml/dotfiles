@@ -26,6 +26,7 @@
 
 ;;; make a more comfortable h-split binding
 (global-set-key "\C-x9" 'split-window-horizontally)
+(global-set-key [(control ?o)] 'set-mark-command)
 
 ;;; configure auto-insert templates
 (add-hook 'find-file-hooks 'auto-insert)

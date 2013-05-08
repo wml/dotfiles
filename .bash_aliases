@@ -25,6 +25,8 @@ function dev_aliases() {
         | xargs file | grep -v ELF | cut -d: -f1 | xargs grep "
     alias fgrepi="find . -type f | grep -v '\.git' | grep -v '\.tmbundle' \
         | xargs file | grep -v ELF | cut -d: -f1 | xargs grep -i "
+    alias cgrep='find . -name '\''*.cs'\'' -type f -print0 | xargs -0 grep '
+    alias cgrepi='find . -name '\''*.cs'\'' -type f -print0 | xargs -0 grep -i '    
 }
 
 function git_aliases() {
