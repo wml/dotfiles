@@ -51,7 +51,11 @@ function git_aliases() {
     alias git-clean='git reset --hard HEAD && git clean -d -f'
 
     function gbf() {
-        find . -name $1 | head -n 1 | xargs git blame
+        if [ $# -eq 2 ]; then
+            find . -name $1 | head -n $2 | tail -n 1 | xargs git blame
+        else
+            find . -name $1 | head -n 1 | xargs git blame
+        fi
     }
 }
 
