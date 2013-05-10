@@ -51,7 +51,14 @@ function git_aliases() {
     alias git-clean='git reset --hard HEAD && git clean -d -f'
 
     function gbf() {
-        if [ $# -eq 2 ]; then
+        if [[ "" != $(echo "$1" | grep '\\') ]]; then
+            BASE=`pwd -P`/
+            FILEPATH=`echo "$1" | sed -e 's%\\\\%/%g' -e 's%C:%/cygdrive/c%' `
+            FILE=`echo $FILEPATH | sed "s%$BASE%%"`
+            cd `dirname $FILE`
+            gb `basename $FILE`
+            cd -
+        elif [ $# -eq 2 ]; then
             find . -name $1 | head -n $2 | tail -n 1 | xargs git blame
         else
             find . -name $1 | head -n 1 | xargs git blame
