@@ -30,6 +30,7 @@
 ; It explains how to perform common automation tasks such as sending
 ; keystrokes and mouse clicks.  It also explains more about hotkeys.
 LCtrl & `;::AltTab   ; cycle windows with C-L
+^V::+INS
 
 ^F1::
 IfWinExist Inbox - will.leszczuk@zocdoc.com - Microsoft Outlook
