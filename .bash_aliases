@@ -53,6 +53,7 @@ function git_aliases() {
 
     function gbf() {
         if [[ "" != $(echo "$1" | grep '\\') ]]; then
+            # TODO: WML: use cygpath here instead?
             BASE=`pwd -P`/
             FILEPATH=`echo "$1" | sed -e 's%\\\\%/%g' -e 's%C:%/cygdrive/c%' `
             FILE=`echo $FILEPATH | sed "s%$BASE%%"`
@@ -67,7 +68,42 @@ function git_aliases() {
     }
 }
 
+function sec_aliases() {
+    function gpg-read() {
+        if [ $# -ne 1 ]; then
+            echo 'ERROR: filename required. aborting...' >&2
+            exit 187
+        fi
+
+        SUFFIX=$(echo $1 | grep -e '\.gpg$')
+        if [[ "$SUFFIX" == "" ]]; then
+            echo 'ERROR: file is not .gpg encrypted (bad suffix). aborting...' >&2
+            exit 187
+        fi
+        
+        EMAIL=$(cat ~/.gitconfig  | grep email | cut -d '=' -f 2 | xargs)
+        if [[ "$EMAIL" == "" ]]; then
+            echo 'ERROR: unable to get email address from ~/.gitconfig. aborting...' >&2
+            exit 187
+        fi
+
+        FILE=$(basename $1)
+        OUTPUT=/tmp/$(echo $FILE | sed 's/\.gpg$//')
+        echo $OUTPUT
+        
+        WINPATH=$(cygpath.exe -ad $OUTPUT)
+
+        gpg --decrypt --recipient "$EMAIL" "$1" > $OUTPUT
+        chmod +x $OUTPUT # derp windows derp
+
+        if [ $? -eq 0 ]; then
+            cmd.exe /C start "$WINPATH"
+        fi
+    }
+}
+
 utils_aliases
 arch_aliases
 dev_aliases
 git_aliases
+sec_aliases
