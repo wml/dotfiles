@@ -1,3 +1,5 @@
+# TODO: ability to turn groups on or off with env variable in bashrc
+
 function utils_aliases() {
     alias ls='ls -lA --color=never'
     alias lash='ls -lAsh '
@@ -102,8 +104,13 @@ function sec_aliases() {
     }
 }
 
+function cygwin_aliases() {
+    alias explore='explorer.exe $(cygpath -ad `pwd`)'
+}
+
 utils_aliases
 arch_aliases
 dev_aliases
 git_aliases
 sec_aliases
+cygwin_aliases
