@@ -6,6 +6,7 @@ function utils_aliases() {
     alias e='emacs -nw'
     alias cdd='cd ~/dotfiles'
     alias tf='tail -f'
+    alias ldate="date '+%Y%m%d'"
 
     function cdl() {
         cd $* && /bin/ls -lA
