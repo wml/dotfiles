@@ -7,6 +7,8 @@ function utils_aliases() {
     alias cdd='cd ~/dotfiles'
     alias tf='tail -f'
     alias ldate="date '+%Y%m%d'"
+    alias df='df -h'
+    alias du='du -sh'
 
     function cdl() {
         cd $* && /bin/ls -lA
