@@ -1,7 +1,9 @@
 function utils_aliases() {
     LSOPTS="-lA"
     if [ -n "$ARCH" ]; then
-        LSOPTS="$LSOPTS --color-never"
+        LSOPTS="$LSOPTS --color"
+    elif [ -n "$MAC" ]; then
+        LSOPTS="$LSOPTS -G"
     fi
     alias ls="ls $LSOPTS"
     alias lash='ls -lAsh '
