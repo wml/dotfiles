@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DOTFILES=$(cd $(dirname $0) && pwd -P)
+
 function bail() {
     echo -e "\nUSAGE: $(basename $0) <plat>\n   where <plat> in [arch, mac, win]\n" >&2
     exit 187
@@ -9,7 +11,35 @@ function parse_args() {
     [ $# -eq 1 ] || bail
     [[ $1 == 'mac' || $1 == 'arch' || $1 == 'win' ]] || bail
     PLAT=$1
+
+    if [ -z "$DRY_RUN" ]; then
+        CMD=eval
+    else
+        CMD=echo
+    fi
+
+    if [ -n "$FORCE" ]; then
+        LNOPTS="-f"
+    fi
+}
+
+function setup_env() {
+    $CMD "echo 'export $(echo $PLAT | tr '[:lower:]' '[:upper:]')=1' > $HOME/.dot_arch"
+    $CMD "touch $HOME/.localrc"
+}
+
+function install_files() {
+    cd "$DOTFILES/$1"
+    for BASE_DIR in $(find . -type d); do
+        HOME_DIR=$HOME/$(echo $BASE_DIR | sed 's%^\./%%')
+        $CMD "mkdir -p $HOME_DIR"
+        for TARGET_FILE in $(find $BASE_DIR -maxdepth 1 -type f | sed 's%^\./%%' | grep -v '\.gitkeep'); do
+            $CMD "ln -s $LNOPTS $DOTFILES/$1/$TARGET_FILE $HOME/$TARGET_FILE"
+        done
+    done
 }
 
 parse_args $*
-echo "export $(echo $PLAT | tr '[:lower:]' '[:upper:]')=1" > ~/.dot_arch
+setup_env
+install_files common
+install_files $PLAT

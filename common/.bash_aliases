@@ -1,5 +1,9 @@
 function utils_aliases() {
-    alias ls='ls -lA --color=never'
+    LSOPTS="-lA"
+    if [ -n "$ARCH" ]; then
+        LSOPTS="$LSOPTS --color-never"
+    fi
+    alias ls="ls $LSOPTS"
     alias lash='ls -lAsh '
     alias e='emacs -nw'
     alias cdd='cd ~/dotfiles'
