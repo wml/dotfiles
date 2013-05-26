@@ -1,3 +1,15 @@
 #!/bin/bash
 
-echo 'test'
+function bail() {
+    echo -e "\nUSAGE: $(basename $0) <plat>\n   where <plat> in [arch, mac, win]\n" >&2
+    exit 187
+}
+
+function parse_args() {
+    [ $# -eq 1 ] || bail
+    [[ $1 == 'mac' || $1 == 'arch' || $1 == 'win' ]] || bail
+    PLAT=$1
+}
+
+parse_args $*
+echo "export $(echo $PLAT | tr '[:lower:]' '[:upper:]')=1" > ~/.dot_arch
