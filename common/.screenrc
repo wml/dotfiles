@@ -24,7 +24,7 @@ bindkey -m "^[<" stuff "g"
 bindkey -m "^[>" stuff "G"
 
 
-screen mutt
+screen bash # mutt
 screen irssi
 screen w3m google.com
 screen python

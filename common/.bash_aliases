@@ -1,7 +1,11 @@
-# TODO: ability to turn groups on or off with env variable in bashrc
-
 function utils_aliases() {
-    alias ls='ls -lA --color=never'
+    LSOPTS="-lA"
+    if [ -n "$ARCH" ]; then
+        LSOPTS="$LSOPTS --color"
+    elif [ -n "$MAC" ]; then
+        LSOPTS="$LSOPTS -G"
+    fi
+    alias ls="ls $LSOPTS"
     alias lash='ls -lAsh '
     alias e='emacs -nw'
     alias cdd='cd ~/dotfiles'
@@ -13,12 +17,6 @@ function utils_aliases() {
     function cdl() {
         cd $* && /bin/ls -lA
     }
-}
-
-function arch_aliases() {
-    alias xfup='startxfce4'
-    alias xfdown='xfce4-session-logout --logout'
-    alias up='sudo pacman -Syu'
 }
 
 function dev_aliases() {
@@ -96,17 +94,30 @@ function sec_aliases() {
 
         FILE=$(basename $1)
         OUTPUT=/tmp/$(echo $FILE | sed 's/\.gpg$//')
-        echo $OUTPUT
         
-        WINPATH=$(cygpath.exe -ad $OUTPUT)
-
         gpg --decrypt --recipient "$EMAIL" "$1" > $OUTPUT
-        chmod +x $OUTPUT # derp windows derp
+        GPG_RESULT=$?
 
-        if [ $? -eq 0 ]; then
-            cmd.exe /C start "$WINPATH"
+        if [ $GPG_RESULT -eq 0 ]; then
+            if [ -n "$WIN" ]; then
+                WINPATH=$(cygpath.exe -ad $OUTPUT)
+                chmod +x $OUTPUT # derp windows derp
+                cmd.exe /C start "$WINPATH"
+            elif [ -n "$MAC" ]; then
+                open "$OUTPUT"
+            else
+                echo "successfully decrypted file as [$OUTPUT]"
+            fi
+        else
+            echo "ERROR: gpg --decrypt exited with status [$GPG_RESULT]. check stderr..." >&2
         fi
     }
+}
+
+function arch_aliases() {
+    alias xfup='startxfce4'
+    alias xfdown='xfce4-session-logout --logout'
+    alias up='sudo pacman -Syu'
 }
 
 function cygwin_aliases() {
@@ -114,8 +125,9 @@ function cygwin_aliases() {
 }
 
 utils_aliases
-arch_aliases
 dev_aliases
 git_aliases
 sec_aliases
-cygwin_aliases
+
+[ -n "$ARCH" ] && arch_aliases
+[ -n "$WIN"  ] && cygwin_aliases
