@@ -51,8 +51,10 @@ function git_aliases() {
     alias gb='git blame '
     alias gr='git checkout -b '
     alias gw='git show '
-    alias gl='git log '
+    alias gl='git log --name-status '
     alias glb='git branch --list --remote'
+    alias gt='git stash'
+    alias gtp='git stash pop'
 
     alias git-clean='git reset --hard HEAD && git clean -d -f'
 
