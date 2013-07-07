@@ -51,7 +51,7 @@ function git_aliases() {
     alias gs='git status '
     alias gdm='git diff master..`git branch | grep "*" | awk "{print \\$2}"` | less'
     alias gc='git commit -m '
-    alias gp='git pull '
+    alias gp='git pull --no-commit '
     alias gh='git push '
     alias gk='git checkout '
     alias gkm='git checkout master'
