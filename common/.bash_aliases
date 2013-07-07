@@ -50,6 +50,7 @@ function git_aliases_autocomplete() {
 function git_aliases() {
     alias gs='git status '
     alias gdm='git diff master..`git branch | grep "*" | awk "{print \\$2}"` | less'
+    alias gdmf='git diff master..`git branch | grep "*" | awk "{print \\$2}"` --name-status | less'    
     alias gc='git commit -m '
     alias gp='git pull --no-commit '
     alias gh='git push '
