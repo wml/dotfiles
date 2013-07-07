@@ -28,14 +28,27 @@ function dev_aliases() {
         | xargs file | grep -v ELF | cut -d: -f1 | xargs grep "
     alias fgrepi="find . -type f | grep -v '\.git' | grep -v '\.tmbundle' \
         | xargs file | grep -v ELF | cut -d: -f1 | xargs grep -i "
-    alias cgrep='find . -name '\''*.cs'\'' -type f -print0 | xargs -0 grep '
-    alias cgrepi='find . -name '\''*.cs'\'' -type f -print0 | xargs -0 grep -i '    
+    alias cgrep="find . -name '*.cs' -type f -print0 | xargs -0 grep "
+    alias cgrepi="find . -name '*.cs' -type f -print0 | xargs -0 grep -i "
+    alias mgrep="find . -name '*.[mh]' -type f -print0 | xargs -0 grep "
+    alias mgrepi="find . -name '*.[mh]' -type f -print0 | xargs -0 grep -i "
 }
 
+function git_aliases_autocomplete() {
+    __git_complete gd _git_diff
+    __git_complete gdc _git_diff     
+    __git_complete gc _git_commit
+    __git_complete gp _git_pull
+    __git_complete gh _git_push     
+    __git_complete gk _git_checkout
+    __git_complete ga _git_add
+    __git_complete gm _git_merge
+    __git_complete gw _git_show
+    __git_complete gl _git_log
+}
+        
 function git_aliases() {
     alias gs='git status '
-    alias gd='git diff | less'
-    alias gdc='git diff --cached | less'
     alias gdm='git diff master..`git branch | grep "*" | awk "{print \\$2}"` | less'
     alias gc='git commit -m '
     alias gp='git pull '
@@ -54,6 +67,12 @@ function git_aliases() {
 
     alias git-clean='git reset --hard HEAD && git clean -d -f'
 
+    function gd() {
+        git diff $* | less
+    }
+    function gdc() {
+        gd --cached $*
+    }
     function gbf() {
         if [[ "" != $(echo "$1" | grep '\\') ]]; then
             # TODO: WML: use cygpath here instead?
@@ -69,6 +88,10 @@ function git_aliases() {
             find . -name $1 | head -n 1 | xargs git blame
         fi
     }
+
+    if [ "" != "`declare -F | grep __git_complete`" ]; then
+        git_aliases_autocomplete
+    fi
 }
 
 function sec_aliases() {
