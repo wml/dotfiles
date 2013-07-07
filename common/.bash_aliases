@@ -146,6 +146,7 @@ function cygwin_aliases() {
     alias explore='explorer.exe $(cygpath -ad `pwd`)'
 }
 
+alias re.='. ~/.bashrc'
 utils_aliases
 dev_aliases
 git_aliases
