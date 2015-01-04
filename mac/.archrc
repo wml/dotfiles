@@ -1,0 +1,27 @@
+function watch() {
+  if [ $# -eq 0 ]; then
+    echo -e '\n  usage: watch [-n <interval>] command\n'
+    return
+  fi
+  
+  TIME=2
+  if [ "-n" == $1 ]; then
+    shift  
+    TIME=$1
+    shift
+  fi
+
+  if [[ $1 == \-* ]]; then
+    echo -e '\n  this shell function only supports the `-n'"'"' flag, as the first parameter\n' >&2
+    return
+  fi
+
+  CMD="$*"
+  
+  while :; do
+  clear
+    echo -e "every ${TIME}s: $CMD\n"
+    eval "$CMD"
+    sleep $TIME
+  done
+}

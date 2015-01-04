@@ -14,5 +14,6 @@ if [ -n "$ARCH" ]; then
     enter >/dev/null 2>&1
 fi
 
-. $HOME/.bash_aliases
-. $HOME/.localrc
+[ -f $HOME/.bash_aliases ] && . $HOME/.bash_aliases
+[ -f $HOME/.archrc ] && . $HOME/.archrc
+[ -f $HOME/.localrc ] && . $HOME/.localrc
