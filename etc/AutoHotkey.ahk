@@ -13,70 +13,50 @@
 ; and it launches a new Notepad window (or activates an existing one).  To
 ; try out these hotkeys, run AutoHotkey again, which will load this file.
 
-#z::Run www.autohotkey.com
-
-;^!n::
-;IfWinExist Untitled - Notepad
-;	WinActivate
-;else
-;	Run Notepad
-;return
-
-
 ; Note: From now on whenever you run AutoHotkey directly, this script
 ; will be loaded.  So feel free to customize it to suit your needs.
 
 ; Please read the QUICK-START TUTORIAL near the top of the help file.
 ; It explains how to perform common automation tasks such as sending
 ; keystrokes and mouse clicks.  It also explains more about hotkeys.
+
 LCtrl & `;::AltTab   ; cycle windows with C-L
+
 ^V::+INS
 
-^F1::
-IfWinExist Inbox - will.leszczuk@zocdoc.com - Microsoft Outlook
-	WinActivate
-return
+$^a:: Send {HOME}
+$^e:: Send {END}
+$^p:: Send {UP}
+$^n:: Send {DOWN}
+$^f:: Send {RIGHT}
+$!f:: Send {Ctrl Down}{RIGHT}{Ctrl Up}
+$^b:: Send {LEFT}
+$!b:: Send {Ctrl Down}{LEFT}{Ctrl Up}
+$^h:: Send {Backspace}
+$^d:: Send {DEL}
+$^j:: Send {Enter}
+$^_:: Send ^z
+$^v:: Send {PGDN}
+$!v:: Send {PGUP}
+$^k:: Send {Shift down}{END}{DEL}{shift up}
+$!>:: Send {Ctrl Down}{END}{Ctrl Up}
+$!<:: Send {Ctrl Down}{HOME}{Ctrl Up}
 
-^F2::
-IfWinExist Calendar - will.leszczuk@zocdoc.com - Microsoft Outlook
-	WinActivate
-return
+#n:: Send ^n
+#d:: Send ^d
+#c:: Send ^c
+#v:: Send ^v
+#f:: Send ^f
+#s:: Send ^s
+#w:: Send ^w
+#j:: Send ^j
+#k:: Send ^k
+#a:: Send ^a
+#x:: Send ^x
+#b:: Send ^b
 
-^F3::
-If WinExist("ahk_class ApolloRuntimeContentWindow")
-	WinActivate
-return
+^0:: Suspend
 
-^F5::
-IfWinExist ZocDoc.vs2010 - Microsoft Visual Studio (Administrator)
-	WinActivate
-return
+^.::^V ; outlook "move to folder"
 
-^F6::
-IfWinExist -bash
-	WinActivate
-return
-
-^F7::
-IfWinExist Microsoft SQL Server Management Studio
-	WinActivate
-return
-
-^F8::
-IfWinExist SQL Server Profiler - [Untitled - 1 (WLESZCZUK)]
-	WinActivate
-return
-
-^F9::
-if WinExist("ahk_class Chrome_WidgetWin_0")
-    WinActivate
-else 
-    if WinExist("ahk_class Chrome_WidgetWin_1")
-        WinActivate
-    return
-return
-
-^F10::
-IfWinExist Administrator: C:\Windows\system32\cmd.exe
-	WinActivate
-return
+#include %A_ScriptDir%\local.ahk
