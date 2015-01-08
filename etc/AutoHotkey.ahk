@@ -55,6 +55,8 @@ $!<:: Send {Ctrl Down}{HOME}{Ctrl Up}
 #x:: Send ^x
 #b:: Send ^b
 
+#$$:: Run, c:\windows\system32\snippingtool.exe
+
 ^0:: Suspend
 
 ^.::^V ; outlook "move to folder"
