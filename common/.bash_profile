@@ -7,6 +7,7 @@
 export PS1='\[\033[32m\][\h]\[\033[0m\] \u@\W\[\033[31m\]$(__git_ps1) \[\033[0m\]$ '
 export EDITOR='emacs -nw '
 export PATH="$HOME/scripts:$PATH"
+export PAGER='less'
 
 if [ -n "$ARCH" ]; then
     setterm -blength 0

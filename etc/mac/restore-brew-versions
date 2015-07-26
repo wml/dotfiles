@@ -1,3 +1,4 @@
 #!/bin/bash
 
 sudo ln -sf `find /usr/local/Cellar/emacs/ -type l -name emacs` /usr/bin/emacs
+sudo ln -sf `find /usr/local/Cellar/w3m/ -type f -name w3m` /usr/bin/w3m
