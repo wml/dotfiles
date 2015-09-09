@@ -29,12 +29,18 @@ function dev_aliases() {
     alias mgrep="find . -name '*.[mh]' -type f -print0 | xargs -0 grep "
     alias mgrepi="find . -name '*.[mh]' -type f -print0 | xargs -0 grep -i "
 
-    alias fgrep="find . -type f | sed 's/ /\\\\ /' | grep -v '\.git' | grep -v '\.tmbundle' \
-        | xargs file | grep -v ELF | cut -d: -f1 | sed 's/ /\\\\ /' | xargs grep "
-    alias fegrep="find . -type f | sed 's/ /\\\\ /' | grep -v '\.git' | grep -v '\.tmbundle' \
-        | xargs file | grep -v ELF | cut -d: -f1 | sed 's/ /\\\\ /' | xargs egrep "
-    alias fgrepi="find . -type f | sed 's/ /\\\\ /' | grep -v '\.git' | grep -v '\.tmbundle' \
-        | xargs file | grep -v ELF | cut -d: -f1 | sed 's/ /\\\\ /' | xargs grep -i "
+    alias fgrep="find . -type f | sed 's/ /\\\\ /' \
+        | grep -v '\.git' | grep -v '\.tmbundle' | grep -v 'target/' | grep -v bower_components | grep -v node_modules | grep -v 'build/' \
+        | xargs file | grep -v ' architecture' | grep -v ELF | grep -v 'compiled' \
+        | cut -d: -f1 | sed 's/ /\\\\ /' | xargs grep "
+    alias fegrep="find . -type f | sed 's/ /\\\\ /' \
+        | grep -v '\.git' | grep -v '\.tmbundle' | grep -v 'target/' | grep -v bower_components | grep -v node_modules | grep -v 'build/' \
+        | xargs file | grep -v ' architecture' | grep -v ELF | grep -v 'compiled' \
+        | cut -d: -f1 | sed 's/ /\\\\ /' | xargs egrep "
+    alias fgrepi="find . -type f | sed 's/ /\\\\ /' \
+        | grep -v '\.git' | grep -v '\.tmbundle' | grep -v 'target/' | grep -v bower_components | grep -v node_modules | grep -v 'build/' \
+        | xargs file | grep -v ' architecture' | grep -v ELF | grep -v 'compiled' \
+        | cut -d: -f1 | sed 's/ /\\\\ /' | xargs grep -i "
 }
 
 function git_aliases_autocomplete() {
