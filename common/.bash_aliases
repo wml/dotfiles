@@ -7,15 +7,19 @@ function utils_aliases() {
     fi
     alias ls="ls $LSOPTS"
     alias lash='ls -lAsh '
-    alias e='emacs -nw'
+    alias e='$EDITOR'
     alias cdd='cd ~/dotfiles'
     alias tf='tail -f'
     alias ldate="date '+%Y%m%d'"
     alias df='df -h'
     alias du='du -sh'
 
-    function cdl() {
-        cd $* && /bin/ls -lA
+    function cdl {
+        cd $* && ls
+    }
+
+    function ef {
+        e $(find . $* | head -n1)
     }
 }
 
@@ -76,6 +80,12 @@ function git_aliases() {
     alias glb='git branch --list --remote'
     alias gt='git stash'
     alias gtp='git stash pop'
+
+    alias git-conflicts="gs | grep 'both modified'"
+    alias git-has-conflicts='git-conflicts &>/dev/null'
+    alias git-first-conflict='git-conflicts | head -n1 | cut -d: -f2'
+    alias gen='git-has-conflicts && $EDITOR $(git-first-conflict)'
+    alias grn='git-has-conflicts && ga $(git-first-conflict)'
 
     alias git-clean='git reset --hard HEAD && git clean -d -f'
 
