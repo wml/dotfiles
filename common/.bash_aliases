@@ -19,7 +19,7 @@ function utils_aliases() {
     }
 
     function ef {
-        e $(find . $* | head -n1)
+        $EDITOR $(find . -name "$@" | head -n1)
     }
 }
 
