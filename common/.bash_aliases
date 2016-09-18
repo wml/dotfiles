@@ -128,16 +128,17 @@ function git_aliases() {
     alias _git-changed-files='(git-staged-files && git-unstaged-files) | grep -v "^$" | cut -d: -f2 | sed "s/^[[:space:]]*//g" | sort | uniq'
     alias gls='echo; _git-changed-files | awk "{printf \"  %d) %s\n\", NR, \$0}"; echo'
 
-    function ge {      
+    function ge {
       if [[ "all" == "$1" ]]; then
-        $EDITOR $(git-changed-files)
+        $EDITOR $(_git-changed-files)
       elif [ $# -eq 0 ] || ! [[ $1 =~ ^[1-9][0-9]*$ ]]; then
         echo; echo "  usage: ge <file-number> -or- \`all'"
-        gls        
+        echo -e "$(gls)"
+        echo
       else
         local FILE=1
         [ $1 -ge 1 ] && FILE=$1
-        local TOEDIT=$(git-changed-files | head -n $FILE | tail -n1)
+        local TOEDIT=$(_git-changed-files | head -n $FILE | tail -n1)
         [[ "" != "$TOEDIT" ]] && $EDITOR $TOEDIT
       fi
     }
