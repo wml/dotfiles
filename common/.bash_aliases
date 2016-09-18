@@ -122,6 +122,25 @@ function git_aliases() {
     if [ "" != "`declare -F | grep __git_complete`" ]; then
         git_aliases_autocomplete
     fi
+
+    alias git-staged-files='gs | sed -n "/Changes to be committed/,\$p" | sed "/Changes not staged for commit/q" | sed "/Untracked files/q" | grep -v "to unstage)" | grep -v "^Changes" | grep -v "^Untracked files"'
+    alias git-unstaged-files='gs | sed -n "/to discard changes/,\$p" | sed "/Untracked files/q" | grep -v "to discard changes" | grep -v "^Untracked files"'
+    alias _git-changed-files='(git-staged-files && git-unstaged-files) | grep -v "^$" | cut -d: -f2 | sed "s/^[[:space:]]*//g" | sort | uniq'
+    alias gls='echo; _git-changed-files | awk "{printf \"  %d) %s\n\", NR, \$0}"; echo'
+
+    function ge {      
+      if [[ "all" == "$1" ]]; then
+        $EDITOR $(git-changed-files)
+      elif [ $# -eq 0 ] || ! [[ $1 =~ ^[1-9][0-9]*$ ]]; then
+        echo; echo "  usage: ge <file-number> -or- \`all'"
+        gls        
+      else
+        local FILE=1
+        [ $1 -ge 1 ] && FILE=$1
+        local TOEDIT=$(git-changed-files | head -n $FILE | tail -n1)
+        [[ "" != "$TOEDIT" ]] && $EDITOR $TOEDIT
+      fi
+    }
 }
 
 function sec_aliases() {
