@@ -123,9 +123,15 @@ function git_aliases() {
         git_aliases_autocomplete
     fi
 
-    alias git-staged-files='gs | sed -n "/Changes to be committed/,\$p" | sed "/Changes not staged for commit/q" | sed "/Untracked files/q" | grep -v "to unstage)" | grep -v "^Changes" | grep -v "^Untracked files"'
-    alias git-unstaged-files='gs | sed -n "/to discard changes/,\$p" | sed "/Untracked files/q" | grep -v "to discard changes" | grep -v "^Untracked files"'
-    alias _git-changed-files='(git-staged-files && git-unstaged-files) | grep -v "^$" | cut -d: -f2 | sed "s/^[[:space:]]*//g" | sort | uniq'
+    function git-block {
+      gs | sed -n "/$1/,\$p" | grep -v "$1" | sed "/^[[:alnum:]]/q" | grep -ve "^[a-zA-Z0-9]"
+    }
+    
+    alias git-staged-files='git-block "Changes to be committed"'
+    alias git-unstaged-files='git-block "to discard changes"'
+    alias git-unmerged-files='git-block "to mark resolution"'
+
+    alias _git-changed-files='(git-staged-files ; git-unstaged-files ; git-unmerged-files) | grep -v "^$" | cut -d: -f2 | sed "s/^[[:space:]]*//g" | sort | uniq'
     alias gls='echo; _git-changed-files | awk "{printf \"  %d) %s\n\", NR, \$0}"; echo'
 
     function ge {
