@@ -18,11 +18,15 @@ defscrollback 4096
 #
 bindkey -m "^[v" stuff "40\025"
 
+# emulate back-word and forward-word in copy mode by moving 15 characters in either direction
+#  used scroll-back above as an example and guess-and-checked into the codes...
+bindkey -m "^[f" stuff "15\06"
+bindkey -m "^[b" stuff "15\02"
+
 # other emacs-like keybindings for copy mode
 markkeys "h=^B:l=^F:$=^E:^F=^V"
 bindkey -m "^[<" stuff "g"
 bindkey -m "^[>" stuff "G"
-
 
 screen bash # mutt
 screen irssi
