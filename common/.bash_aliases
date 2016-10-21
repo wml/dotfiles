@@ -92,12 +92,13 @@ function git_aliases() {
     alias gtp='git stash pop'
 
     local GITCONFLICTS="$GS | grep 'both modified'"
+    local GITHASCONFLICTS="$GITCONFLICTS &>/dev/null"
     local GITFIRSTCONFLICT="$GITCONFLICTS | head -n1 | cut -d: -f2"
     alias git-conflicts="$GITCONFLICTS"
-    alias git-has-conflicts="$GITCONFLICTS &>/dev/null"
+    alias git-has-conflicts="$GITHASCONFLICTS "
     alias git-first-conflict="$GITFIRSTCONFLICT"
-    alias gen='git-has-conflicts && $EDITOR $($GITFIRSTCONFLICT)'
-    alias grn='git-has-conflicts && ga $($GITFIRSTCONFLICT)'
+    alias gen="$GITHASCONFLICTS && $EDITOR \$($GITFIRSTCONFLICT)"
+    alias grn="$GITHASCONFLICTS && ga \$($GITFIRSTCONFLICT)"
 
     alias git-clean='git reset --hard HEAD && git clean -d -f'
 
