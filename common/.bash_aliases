@@ -69,7 +69,9 @@ function git_aliases_autocomplete() {
 }
         
 function git_aliases() {
-    alias gs='git status '
+    GS='git status '
+    local GM='git merge --no-commit --no-ff '
+    alias gs="$GS "
     alias gdm='git diff master..`git branch | grep "*" | awk "{print \\$2}"` | less'
     alias gdmf='git diff master..`git branch | grep "*" | awk "{print \\$2}"` --name-status | less'    
     alias gc='git commit -m '
@@ -79,8 +81,8 @@ function git_aliases() {
     alias gkm='git checkout master'
     alias ga='git add '
     alias gaa='git add -A '
-    alias gm='git merge --no-commit --no-ff '
-    alias gmm='gm master'
+    alias gm="$GM "
+    alias gmm="$GM master"
     alias gb='git blame '
     alias gr='git checkout -b '
     alias gw='git show '
@@ -89,11 +91,13 @@ function git_aliases() {
     alias gt='git stash'
     alias gtp='git stash pop'
 
-    alias git-conflicts="gs | grep 'both modified'"
-    alias git-has-conflicts='git-conflicts &>/dev/null'
-    alias git-first-conflict='git-conflicts | head -n1 | cut -d: -f2'
-    alias gen='git-has-conflicts && $EDITOR $(git-first-conflict)'
-    alias grn='git-has-conflicts && ga $(git-first-conflict)'
+    local GITCONFLICTS="$GS | grep 'both modified'"
+    local GITFIRSTCONFLICT="$GITCONFLICTS | head -n1 | cut -d: -f2"
+    alias git-conflicts="$GITCONFLICTS"
+    alias git-has-conflicts="$GITCONFLICTS &>/dev/null"
+    alias git-first-conflict="$GITFIRSTCONFLICT"
+    alias gen='git-has-conflicts && $EDITOR $($GITFIRSTCONFLICT)'
+    alias grn='git-has-conflicts && ga $($GITFIRSTCONFLICT)'
 
     alias git-clean='git reset --hard HEAD && git clean -d -f'
 
@@ -124,7 +128,7 @@ function git_aliases() {
     fi
 
     function git-block {
-      gs | sed -n "/$1/,\$p" | grep -v "$1" | sed "/^[[:alnum:]]/q" | grep -ve "^[a-zA-Z0-9]"
+      $GS | sed -n "/$1/,\$p" | grep -v "$1" | sed "/^[[:alnum:]]/q" | grep -ve "^[a-zA-Z0-9]"
     }
     
     alias git-staged-files='git-block "Changes to be committed"'
