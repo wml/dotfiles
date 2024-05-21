@@ -27,6 +27,7 @@
 ;;; make a more comfortable h-split binding
 (global-set-key "\C-x9" 'split-window-horizontally)
 (global-set-key [(control ?o)] 'set-mark-command)
+(global-set-key (kbd "M-0") (kbd "M-| pbcopy <RET>"))
 
 ;;; configure auto-insert templates
 (add-hook 'find-file-hooks 'auto-insert)
